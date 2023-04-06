@@ -1,10 +1,43 @@
 import { View, Text, StyleSheet, ScrollView, ImageBackground, Image, TouchableOpacity, TextInput, Dimensions } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import googleimg from '../assets/googleimg.png'
+import { loginEmail, googleSignin } from '../Hooks/AuthenticationHools';
+
+
+
 
 export default function Login() {
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const Login =async () => {
+        loginEmail(email, password)
+            .then((id) => {
+                if (id) {
+                    console.log(id)
+                }
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+
+    }
+    const googleLogin = async () => {
+        googleSignin()
+            .then((id) => {
+                if (id) {
+                    console.log(id)
+                }
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+
+    }
+
     return (
         <ImageBackground source={{ uri: 'https://res.cloudinary.com/dlhwfesiz/image/upload/v1680655574/home_aqhx7k.jpg' }} style={styles.background}>
             <ScrollView style={styles.overlay}>
@@ -16,24 +49,32 @@ export default function Login() {
                 <View style={styles.main_div}>
                     <View style={styles.input_div}>
                         <View style={styles.input_field}>
-                            <Ionicons name="mail" size={40} color="#37306B" />
-                            <TextInput placeholder="Email Required" style={styles.input} />
+                            <Ionicons name="mail" size={30} color="#37306B" />
+                            <TextInput placeholder="Email Required" style={styles.input}onChangeText={newText => setEmail(newText)} />
                         </View>
                         <View style={styles.input_field}>
-                            <Ionicons name="lock-closed" size={40} color="#37306B" />
-                            <TextInput placeholder="Password" secureTextEntry={true} style={styles.input} />
+                            <Ionicons name="lock-closed" size={30} color="#37306B" />
+                            <TextInput placeholder="Password" secureTextEntry={true} style={styles.input} onChangeText={(text) => { setPassword(text) }}/>
                         </View>
                     </View>
-                    <View><Text style={styles.forgot} onPress={()=>{console.log("hello");}}>Forgot Password</Text></View>
+                    <View><Text style={styles.forgot} onPress={() => { console.log("hello"); }}>Forgot Password</Text></View>
                     <View style={styles.BTN_div}>
-                        <TouchableOpacity style={{ backgroundColor: '#37306B', width: 300, height: 60, borderRadius: 20, justifyContent: 'center', alignItems: 'center', marginTop: 40 }}>
+                        <TouchableOpacity style={{ backgroundColor: '#37306B', width: 300, height: 60, borderRadius: 20, justifyContent: 'center', alignItems: 'center', marginTop: 40 }}
+                            onPress={() => {
+                                Login()
+                            }}
+                        >
                             <Text style={{ color: '#ffffff', fontSize: 20, fontWeight: '600', fontStyle: 'italic' }}>Sign In</Text>
                         </TouchableOpacity>
                     </View>
                     <Text style={{ marginVertical: 40, textAlign: 'center' }}>OR</Text>
                     <View style={styles.BTN_div}>
                         <TouchableOpacity
-                            style={styles.google_btn}>
+                            style={styles.google_btn}
+                            onPress={() => {
+                                googleLogin();
+                            }}
+                        >
                             <Image source={googleimg} style={{ width: 40, height: 40 }} />
                             <Text style={{ color: '#37306B', fontSize: 20, fontWeight: '600', fontStyle: 'italic' }}>Sign In with Google</Text>
                             <Ionicons name='arrow-forward' size={30} color='#37306B' />
@@ -64,7 +105,6 @@ const styles = StyleSheet.create({
         color: '#ffffff',
         fontSize: 20,
         fontWeight: '600',
-        fontStyle: 'italic',
         textAlign: 'right',
         marginRight: 20,
     },
@@ -77,14 +117,12 @@ const styles = StyleSheet.create({
         color: '#ffffff',
         fontSize: 40,
         fontWeight: '700',
-        fontStyle: 'italic',
         marginBottom: 20
     },
     Signup_txt_helping: {
         color: '#ffffff',
         fontSize: 13,
         fontWeight: '600',
-        fontStyle: 'italic',
         marginRight: 20,
     },
     main_div: {
@@ -129,7 +167,6 @@ const styles = StyleSheet.create({
         color: '#37306B',
         fontSize: 16,
         fontWeight: '600',
-        fontStyle: 'italic',
         textAlign: 'right',
         marginRight: 20,
         marginTop: 7
