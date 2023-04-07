@@ -32,7 +32,7 @@ export default function Login({navigation}) {
     return (
         <ImageBackground source={{ uri: 'https://res.cloudinary.com/dlhwfesiz/image/upload/v1680655574/home_aqhx7k.jpg' }} style={styles.background}>
             <ScrollView style={styles.overlay}>
-                <View style={styles.register_div}><Text style={styles.register_txt}>Register Now!</Text></View>
+                <View style={styles.register_div}><Text onPress={()=>{navigation.navigate('Signup')}} style={styles.register_txt}>Register Now!</Text></View>
                 <View style={styles.Signup_txt_div}>
                     <Text style={styles.Signup_txt}>Sign In</Text>
                     <Text style={styles.Signup_txt_helping}>"Your key to finding your dream home starts here - log in and unlock the possibilities with our top-notch real estate app."- Welcome to our real estate app</Text>
@@ -55,12 +55,12 @@ export default function Login({navigation}) {
                                 Login()
                             }}
                         >
-                            <Text style={{ color: '#ffffff', fontSize: 20, fontWeight: '600', fontStyle: 'italic' }}>Sign In</Text>
+                            <Text style={{ color: '#ffffff', fontSize: 20, fontWeight: '600' }}>Sign In</Text>
                         </TouchableOpacity>
                     </View>
                     <Text style={{ marginVertical: 40, textAlign: 'center' }}>OR</Text>
                     <View style={styles.BTN_div}>
-                        <GoogleBTN />
+                        <GoogleBTN shadowCLR={"#000000"}/>
 
                     </View>
                 </View>

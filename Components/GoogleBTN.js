@@ -6,7 +6,7 @@ import googleimg from '../assets/googleimg.png'
 import {googleSignin} from '../Hooks/AuthenticationHools'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 
-export default function GoogleBTN() {
+export default function GoogleBTN({shadowClr}) {
     const googleLogin = async () => {
         googleSignin()
             .then((id) => {
@@ -21,13 +21,13 @@ export default function GoogleBTN() {
 
     return (
         <TouchableOpacity
-            style={styles.google_btn}
+            style={[styles.google_btn, { shadowColor: shadowClr }]}
             onPress={() => {
                 googleLogin();
             }}
         >
             <Image source={googleimg} style={{ width: 40, height: 40 }} />
-            <Text style={{ color: '#37306B', fontSize: 20, fontWeight: '600', fontStyle: 'italic' }}>Sign In with Google</Text>
+            <Text style={{ color: '#37306B', fontSize: 20, fontWeight: '600' }}>Sign In with Google</Text>
             <Ionicons name='arrow-forward' size={30} color='#37306B' />
         </TouchableOpacity>
     )
@@ -44,7 +44,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flexDirection: 'row',
         gap: 10,
-        shadowColor: '#000000',
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.3,
         shadowRadius: 5,
