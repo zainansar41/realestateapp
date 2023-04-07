@@ -2,13 +2,14 @@ import { View, Text, StyleSheet, ScrollView, ImageBackground, Image, TouchableOp
 import React, { useState } from 'react'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import googleimg from '../assets/googleimg.png'
 import { loginEmail, googleSignin } from '../Hooks/AuthenticationHools';
 
+import GoogleBTN from '../Components/GoogleBTN';
 
 
 
-export default function Login() {
+
+export default function Login({navigation}) {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -18,6 +19,7 @@ export default function Login() {
             .then((id) => {
                 if (id) {
                     console.log(id)
+                    navigation.navigate('Tabbar')
                 }
             })
             .catch((err) => {
@@ -25,18 +27,7 @@ export default function Login() {
             })
 
     }
-    const googleLogin = async () => {
-        googleSignin()
-            .then((id) => {
-                if (id) {
-                    console.log(id)
-                }
-            })
-            .catch((err) => {
-                console.log(err)
-            })
 
-    }
 
     return (
         <ImageBackground source={{ uri: 'https://res.cloudinary.com/dlhwfesiz/image/upload/v1680655574/home_aqhx7k.jpg' }} style={styles.background}>
@@ -69,16 +60,7 @@ export default function Login() {
                     </View>
                     <Text style={{ marginVertical: 40, textAlign: 'center' }}>OR</Text>
                     <View style={styles.BTN_div}>
-                        <TouchableOpacity
-                            style={styles.google_btn}
-                            onPress={() => {
-                                googleLogin();
-                            }}
-                        >
-                            <Image source={googleimg} style={{ width: 40, height: 40 }} />
-                            <Text style={{ color: '#37306B', fontSize: 20, fontWeight: '600', fontStyle: 'italic' }}>Sign In with Google</Text>
-                            <Ionicons name='arrow-forward' size={30} color='#37306B' />
-                        </TouchableOpacity>
+                        <GoogleBTN />
 
                     </View>
                 </View>
@@ -175,19 +157,5 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
-    google_btn: {
-        backgroundColor: '#fff',
-        width: 300,
-        height: 60,
-        borderRadius: 20,
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'row',
-        gap: 10,
-        shadowColor: '#000000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.3,
-        shadowRadius: 5,
-        elevation: 3, // Add this for Android shadow
-    }
+
 })

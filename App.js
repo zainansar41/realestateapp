@@ -1,11 +1,24 @@
 import { StatusBar } from 'expo-status-bar';
 
 import Login from './Screens/Login';
+import Tabbar from './Tabbar';
+
+import { NavigationContainer } from '@react-navigation/native';
+
+
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+const Stack = createNativeStackNavigator();
+
 
 export default function App() {
   return (
-    <Login />
-    
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Login" component={Login} options={{headerShown:false}} />
+        <Stack.Screen name="Tabbar" component={Tabbar} options={{headerShown:false}}/>
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
