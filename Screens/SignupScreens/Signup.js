@@ -20,10 +20,6 @@ const Signup = ({ navigation }) => {
                             <Ionicons name="mail" size={30} color="#37306B" />
                             <TextInput placeholder="Email Required" style={styles.input} onChangeText={newText => setEmail(newText)} />
                         </View>
-                        <View style={styles.input_field}>
-                            <Ionicons name="lock-closed" size={30} color="#37306B" />
-                            <TextInput placeholder="Password" secureTextEntry={true} style={styles.input} onChangeText={(text) => { setPassword(text) }} />
-                        </View>
                     </View>
                     <View style={styles.BTN_div}>
                         <TouchableOpacity style={{ backgroundColor: '#37306B', width: 200, height: 60, borderRadius: 20, justifyContent: 'center', alignItems: 'center', marginTop: 40 }}
