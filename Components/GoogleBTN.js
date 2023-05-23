@@ -1,22 +1,13 @@
-import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native'
+import { View, Text, Image, TouchableOpacity, StyleSheet, Alert } from 'react-native'
 import React from 'react'
 
 import googleimg from '../assets/googleimg.png'
 
-import {googleSignin} from '../Hooks/AuthenticationHools'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 
 export default function GoogleBTN({shadowClr}) {
     const googleLogin = async () => {
-        googleSignin()
-            .then((id) => {
-                if (id) {
-                    console.log(id)
-                }
-            })
-            .catch((err) => {
-                console.log(err)
-            })
+        Alert.alert('Google Login is not implemented yet')
     }
 
     return (

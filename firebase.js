@@ -2,9 +2,6 @@ import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 
 
-
-
-
 const firebaseConfig = {
     apiKey: "AIzaSyDpo-fj0BtYL4INjqDT_f8v9foLpM8kWP8",
     authDomain: "realestateapp-b664f.firebaseapp.com",
